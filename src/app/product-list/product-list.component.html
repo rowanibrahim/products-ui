@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> Products Table</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th *ngFor="let row of tableData.headerRow; let index = index">{{ row }}</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of tableData.dataRows; let index = index">
+                    <td *ngFor="let i of data;">{{i}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
