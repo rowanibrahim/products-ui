@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService, UserAuthPayload } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,16 +14,25 @@ export class LoginComponent implements OnInit {
     username: '',
     password: ''
   });
-  constructor(    private formBuilder: FormBuilder
-    ) { }
+  
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
-
+  navigateToDashboard(){
+    this.router.navigate(['/dashboard']);
+  }
   login(){
-    console.log("event");
-    console.log('Your order has been submitted', this.loginForm.value);
-    this.loginForm.reset();
-
+    var payload:UserAuthPayload = {
+      username: this.loginForm.value.username,
+      password: this.loginForm.value.password
+    }
+    this.authService.login(payload).subscribe((reponse) =>{ 
+      localStorage.setItem('user', JSON.stringify({
+        'token': reponse.token
+      }));
+      this.navigateToDashboard();
+      this.loginForm.reset();
+    });
   }
 }
