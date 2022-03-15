@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService, UserAuthPayload } from '../services/auth/auth.service';
+import { AuthService, UserAuthPayload } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -31,8 +31,8 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('user', JSON.stringify({
         'token': reponse.token
       }));
-      this.navigateToDashboard();
       this.loginForm.reset();
+      this.navigateToDashboard();
     });
   }
 }

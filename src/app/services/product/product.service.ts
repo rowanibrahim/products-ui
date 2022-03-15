@@ -47,5 +47,11 @@ export class ProductService {
       catchError((this.handleError<any>('updateProduct')))
     );
   }
+
+  upload(formData: FormData): Observable<any> {
+    return this.http.post(this.baseUrl+"/product/upload" , formData, this.httpOptions).pipe(
+      catchError((this.handleError<any>('uploadSheet')))
+    );
+  }
   
 }

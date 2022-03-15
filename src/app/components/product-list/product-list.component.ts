@@ -2,7 +2,7 @@ import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { IProduct, ProductService } from '../services/product/product.service';
+import { IProduct, ProductService } from '../../services/product/product.service';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -31,6 +31,18 @@ export class ProductListComponent implements AfterViewInit {
       (response)=>{
         this.products = response;
         this.dataSource = new MatTableDataSource(response);
+      }
+    )
+  }
+
+  onFileChange(event:any){
+    const formData = new FormData();
+    for (const file of event.target.files) {
+      formData.append("file", file)
+    }
+    this.productService.upload(formData).subscribe(
+      (response)=>{
+        this.getAllProducts();
       }
     )
   }

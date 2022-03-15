@@ -1,5 +1,13 @@
  
   <div class="mat-elevation-z8">
+    <div>
+      <h2>Upload the sheet of products</h2>
+      <input type="file" (change)="onFileChange($event)" multiple="false" />
+
+      <br/>
+      <br />
+    </div>
+    
     <table mat-table [dataSource]="dataSource" matSort>
     
       <ng-container matColumnDef="id">
