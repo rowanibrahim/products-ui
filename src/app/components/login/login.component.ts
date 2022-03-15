@@ -29,7 +29,8 @@ export class LoginComponent implements OnInit {
     }
     this.authService.login(payload).subscribe((reponse) =>{ 
       localStorage.setItem('user', JSON.stringify({
-        'token': reponse.token
+        'token': reponse.token,
+        'userType': reponse.userType
       }));
       this.loginForm.reset();
       this.navigateToDashboard();

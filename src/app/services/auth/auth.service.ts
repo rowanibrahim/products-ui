@@ -9,6 +9,7 @@ export interface UserAuthPayload {
 }
 export interface UserAuthResponse {
   token: string;
+  userType: string
 }
 @Injectable({
   providedIn: 'root'

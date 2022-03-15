@@ -11,7 +11,7 @@ import { IProduct, ProductService } from '../../services/product/product.service
 
 export class ProductListComponent implements AfterViewInit {
   displayedColumns: string[] = ['id','code', 'nameAr', 'nameEn', 'categoryNameAr', 'categoryNameEn'
-  , "price", "quantity", "active"];
+  , "price", "quantity", "active", "action"];
   public dataSource: MatTableDataSource<IProduct>;
   products: IProduct[];
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -31,6 +31,17 @@ export class ProductListComponent implements AfterViewInit {
       (response)=>{
         this.products = response;
         this.dataSource = new MatTableDataSource(response);
+      }
+    )
+  }
+  activate(event:any, id:number){
+    var prod = {
+      active: event,
+      id: id
+    }
+    this.productService.updateProduct(prod).subscribe(
+      (response)=>{
+        this.getAllProducts();
       }
     )
   }

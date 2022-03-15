@@ -3,16 +3,16 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, of, tap } from 'rxjs';
 
 export interface IProduct{
-  id: number,
-  active: boolean,
-  categoryNameAr: string,
-  categoryNameEn: string,
-  code: string,
-  createdAt: string,
-  nameAr: string,
-  nameEn: string,
-  price: number,
-  quantity: number,
+  id?: number,
+  active?: boolean,
+  categoryNameAr?: string,
+  categoryNameEn?: string,
+  code?: string,
+  createdAt?: string,
+  nameAr?: string,
+  nameEn?: string,
+  price?: number,
+  quantity?: number,
 }
 @Injectable({
   providedIn: 'root'
